@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FindMySlot v2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: #00c9ff;
+      background: linear-gradient(to right, #92fe9d, #00c9ff);
+      color: #000;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #111;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav button {
+      background: transparent;
+      border: 2px solid #00f5c3;
+      padding: 0.5rem 1rem;
+      color: #00f5c3;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    nav button:hover {
+      background: #00f5c3;
+      color: #000;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      display: none;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px #00f5c3;
+    }
+
+    .card h3 {
+      color: #00f5c3;
+    }
+
+    .status {
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .available {
+      background: #00c853;
+      color: white;
+    }
+
+    .full {
+      background: #d50000;
+      color: white;
+    }
+
+    .btn {
+      margin-top: 15px;
+      display: inline-block;
+      padding: 10px 25px;
+      background-color: #00f5c3;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #00cba9;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      background: #f1f1f1;
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav button {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  🚗 FindMySlot 2.0 – Neon Smart Parking
+</header>
+
+<nav>
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('map')">Slots</button>
+  <button onclick="show('book')">Book</button>
+  <button onclick="show('pay')">Pay</button>
+</nav>
+
+<section id="home" class="active">
+  <div class="card">
+    <h3>Welcome to FindMySlot</h3>
+    <p>Navigate city traffic with ease using our real-time smart parking assistant.</p>
+    <p>Use the navigation above to find and reserve a slot now.</p>
+  </div>
+</section>
+
+<section id="map">
+  <div class="card">
+    <h3>🚏 Guntur Mall</h3>
+    <p>₹30/hour – 5 slots available</p>
+    <span class="status available">Available</span>
+    <button class="btn" onclick="show('book')">Book Now</button>
+  </div>
+
+  <div class="card">
+    <h3>🚏 Railway Station Lot</h3>
+    <p>₹20/hour – 0 slots</p>
+    <span class="status full">Full</span>
+  </div>
+</section>
+
+<section id="book">
+  <div class="card">
+    <h3>Book a Slot – Guntur Mall</h3>
+    <p>Select Duration:</p>
+    <select>
+      <option>30 Minutes</option>
+      <option>1 Hour</option>
+      <option>2 Hours</option>
+    </select>
+    <button class="btn" onclick="show('pay')">Continue to Payment</button>
+  </div>
+</section>
+
+<section id="pay">
+  <div class="card">
+    <h3>Pay for Your Slot</h3>
+    <p>Amount: ₹30</p>
+    <input type="text" placeholder="Enter UPI ID (e.g. name@upi)">
+    <button class="btn" onclick="show('confirm')">Pay Now</button>
+  </div>
+</section>
+
+<section id="confirm">
+  <div class="card">
+    <h3>✅ Booking Confirmed</h3>
+    <p>Your slot at Guntur Mall is booked!</p>
+    <p>Reference ID: <strong>#FM-NEON-2025</strong></p>
+    <button class="btn" onclick="show('home')">Return to Home</button>
+  </div>
+</section>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
